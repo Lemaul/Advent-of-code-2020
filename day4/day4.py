@@ -15,14 +15,14 @@ def get_passports(file):
 
 	passports = []
 	tempdict = dict(fields)
-	for i, line in enumerate(data):
-		for field in tempdict: # looking for fields in tempdict
+	for line in data:
+		for field in tempdict: 
 			if field in line:
 				field_index = line.find(field)
 				line_remainder = line[field_index + len(field) + 1:]
 				field_content = line_remainder[:line_remainder.find(' ')]
 				tempdict[field] = field_content
-		if ':' not in line: # passport is over, restart values
+		if ':' not in line:
 			passports.append(tempdict)
 			tempdict = dict(fields)
 
@@ -47,7 +47,7 @@ def eyr(x):
 
 def hgt(x):
 	if 'cm' not in x and 'in' not in x: return False
-	height = int(x[:len(x)-2])
+	height = int(x[:-2])
 	if 'cm' in x:
 		return 150 <= height <= 193
 	return 59 <= height <= 76
@@ -69,7 +69,6 @@ def pid(x):
 
 def valid_data(passport):
 	return valid_fields(passport) and byr(passport['byr']) and iyr(passport['iyr']) and eyr(passport['eyr']) and hgt(passport['hgt']) and hcl(passport['hcl']) and ecl(passport['ecl']) and pid(passport['pid'])
-
 
 def main():
 	passports = get_passports('day4.txt')
