@@ -24,29 +24,26 @@ def part_one(rules, visited, golden):
  
 	for rule in rules:
 		DFS(rules, rule, visited, golden)
-	# first = list(rules.keys())[0]
-	# for rule in rules[first]:
-	# 	if rule[0] in golden:
-	# 		golden.add(first)
+
+	for rule in rules:
+		for color in rules[rule]:
+			if color[0] in golden:
+				golden.add(rule)
 	return golden
 
 def DFS(rules, rule, visited, golden):
 	visited.add(rule)
 	# print(rule, end='\n')
 	for color in rules[rule]:
-		if color[0] == 'shiny gold':
+		if color[0] == 'shiny gold' or color[0] in golden:
 			golden.add(rule)
 		if color[0] not in visited:
 			DFS(rules, color[0], visited, golden)
-		elif color[0] in golden:
-			golden.add(rule)
 			
 
+
 def main():
-	rules = get_input('test_day7.txt')
-	# for rule in rules:
-	# 	print('{'+ str(rule) + "}: " + str(rules[rule]))
-	
+	rules = get_input('day7.txt')
 
 	golden_bag = {rule: False for rule in rules}
 	visited = set()

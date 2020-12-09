@@ -6,9 +6,10 @@ def get_input(file):
 		instructions = f.read().split('\n')
 	return [[i[:3], int(i[i.find(' '):])] for i in instructions]
 
+
 def part_one(inst):
 	visited = [False for instruction in inst]
-	print(inst)
+	
 	acc = 0
 	index = 0
 	while True:
@@ -23,6 +24,7 @@ def part_one(inst):
 		else:
 			visited[index] = True
 			index += inst[index][1]
+
 
 def part_two(inst):
 	visited = [False for instruction in inst]
@@ -59,10 +61,10 @@ def check(inst):
 
 def main():
 	instructions = get_input('day8.txt')
-	# acc = part_one(instructions)
+	acc = part_one(instructions)
 	acc2 = part_two(instructions)
 	
-	# print(acc)
+	print(acc)
 	print(acc2)
 
 
