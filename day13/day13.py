@@ -32,6 +32,7 @@ def timestamp(buses, test):
 
 
 def main():
+	
 	test = 'test.txt'
 	todayip = 'day13.txt'
 	time, buses = get_buses(test)
